@@ -1,0 +1,66 @@
+﻿<Window x:Class="RequestsApp.DateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RequestsApp"
+        mc:Ignorable="d"
+        Title="Управление заявками" Height="720" Width="1280">
+    <Grid Background="#E5DCDCDC">
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Background="#B2BFC0C5">
+                <StackPanel Margin="10 30 10 10" HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                        <TextBox Name="SearchText" Width="250" FontSize="16" Height="32"/>
+                        <Button Name="ClearSearchButton" Height="32" Margin="0 0 0 1" VerticalAlignment="Center" Padding="10 0" Click="ClearSearchButton_Click">X</Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox Name="SearchBox" VerticalAlignment="Center" FontSize="14" Width="150" Height="32"/>
+                        <Button Name="SearchButton" Padding="41 6" Click="SearchButton_Click">Поиск</Button>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Margin="0 35 0 15">
+                    <Button Name="TablesButton" FontSize="20" Height="65" FontWeight="SemiBold" VerticalAlignment="Top" Click="TablesButton_Click">Таблицы</Button>
+                    <Button Name="ApplicationsButton" FontSize="20" Height="65" FontWeight="SemiBold" Visibility="Collapsed" VerticalAlignment="Top" Click="ApplicationsButton_Click">Заявки</Button>
+                    <Button Name="AgreementButton" FontSize="20" Height="65" FontWeight="SemiBold" Visibility="Collapsed" VerticalAlignment="Top" Click="AgreementButton_Click">Договоры</Button>
+                    <Button Name="ComponyButton" FontSize="20" Height="65" FontWeight="SemiBold" Visibility="Collapsed" VerticalAlignment="Top" Click="ComponyButton_Click">Объекты</Button>
+                    <Button Name="EmployeesButton" FontSize="20" Height="65" FontWeight="SemiBold" Visibility="Collapsed" VerticalAlignment="Top" Click="EmployeesButton_Click">Сотрудники</Button>
+                    <Button Name="GraphicButton" FontSize="20" Height="65" FontWeight="SemiBold" Visibility="Collapsed" VerticalAlignment="Top" Click="GraphicButton_Click" >Графики</Button>
+                    <Button Name="ReportsButton" FontSize="20" Height="65" FontWeight="SemiBold" Visibility="Collapsed" VerticalAlignment="Top" Click="ReportsButton_Click">Отчеты</Button>
+                    <Button Name="ReportCloseButton" FontSize="20" Height="65" FontWeight="SemiBold" Visibility="Collapsed" VerticalAlignment="Top" Click="ReportCloseButton_Click">Закрытые заявки</Button>
+                    <Button Name="ReportOrgSotrButton" FontSize="20" Height="65" FontWeight="SemiBold" Visibility="Collapsed" VerticalAlignment="Top" Click="ReportOrgSotrButton_Click">Организация/сотрудник</Button>
+                    <Button Name="RasGraButton" FontSize="20" Height="65" FontWeight="SemiBold" VerticalAlignment="Top" Click="RasGraButton_Click">Графики/Отчеты</Button>
+                    <Button Name="BackButton" FontSize="20" Height="65" FontWeight="SemiBold" Visibility="Collapsed" VerticalAlignment="Top" Click="BackButton_Click">Назад</Button>
+                </StackPanel>
+            </StackPanel>
+            <Button Grid.Column="0" Name="HelpButton" FontSize="20" Height="65" FontWeight="SemiBold" VerticalAlignment="Bottom" Click="HelpButton_Click">Справка</Button>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Name="TableLabel" Margin="40 10" FontSize="22" FontWeight="DemiBold"></Label>
+
+                <Frame Grid.Row="1" Name="MainFrame" Margin="40 0 40 0" NavigationUIVisibility="Hidden" Visibility="Collapsed">
+                    
+                </Frame>
+
+                <Grid Grid.Row="2" Margin="40">
+                    <StackPanel Orientation="Horizontal"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Name ="AddButton" FontSize="16" Padding="10 4" Click="Button_Click" Visibility="Collapsed">Добавить</Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
