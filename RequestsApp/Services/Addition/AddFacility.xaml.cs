@@ -60,44 +60,50 @@ namespace RequestsApp.Services.Addition
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            // Проверка на пустоту полей и корректность данных
+
+            #region Field_Validation
+            // Проверка поля 'Название'
             if (string.IsNullOrWhiteSpace(name_tb.Text))
             {
                 MessageBox.Show("Поле 'Название' не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
+            // Проверка поля 'Адрес'
             if (string.IsNullOrWhiteSpace(address_tb.Text))
             {
-                MessageBox.Show("Поле 'Адресс' не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Поле 'Адрес' не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
+            // Проверка поля 'Имя директора'
             if (string.IsNullOrWhiteSpace(dir_tb.Text))
             {
                 MessageBox.Show("Поле 'Имя директора' не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
+            // Проверка поля 'Имя агента'
             if (string.IsNullOrWhiteSpace(agent_tb.Text))
             {
                 MessageBox.Show("Поле 'Имя агента' не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            if (!Regex.IsMatch(phone_tb.Text, @"^\+375\d{2}\d{3}\d{2}\d{2}$"))
+            // Проверка формата номера телефона
+            if (!Regex.IsMatch(phone_tb.Text.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", ""), @"^\+375\d{2}\d{3}\d{2}\d{2}$"))
             {
                 MessageBox.Show("Некорректный формат номера телефона.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            #endregion
 
-            // Продолжение операции добавления/обновления записи в базе данных
             var sql_id = new SqlParameter("@ID", id);
             var n = new SqlParameter("@N", name_tb.Text);
             var a = new SqlParameter("@A", address_tb.Text);
             var d = new SqlParameter("@D", dir_tb.Text);
             var agent = new SqlParameter("@Agent", agent_tb.Text);
-            var phone = new SqlParameter("@P", phone_tb.Text);
+            var phone = new SqlParameter("@P", phone_tb.Text.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", ""));
 
             if (!isUpdate)
             {

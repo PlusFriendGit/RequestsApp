@@ -39,10 +39,11 @@ namespace RequestsApp
             SearchText.Clear();
             MainFrame.Visibility = Visibility.Visible;
             SearchBox.Items.Clear();
-            SearchBox.Items.Add("Объекты");
-            SearchBox.Items.Add("Сотрудник");
-            SearchBox.Items.Add("Проблема");
-            SearchBox.Items.Add("Телефон");
+            string[] arr = { "Объекты", "Сотрудник", "Проблема", "Телефон" };
+            for (int i = 0; i < arr.Length; i++)
+            {
+                SearchBox.Items.Add(arr[i]);
+            }
             TableLabel.Content = "Список заявок";
             MainFrame.Navigate(new Uri(@"Frames/RequestsView.xaml", UriKind.Relative));
         }
@@ -51,9 +52,11 @@ namespace RequestsApp
             SearchText.Clear();
             MainFrame.Visibility = Visibility.Visible;
             SearchBox.Items.Clear();
-            SearchBox.Items.Add("Объекты");
-            SearchBox.Items.Add("Проблема");
-            SearchBox.Items.Add("Телефон");
+            string[] arr = { "Объекты", "Проблема", "Телефон" };
+            for (int i = 0; i < arr.Length; i++)
+            {
+                SearchBox.Items.Add(arr[i]);
+            }
             var user = db.EmployeesTables.First(s => s.EmployeeId == userId);
             TableLabel.Content = "Список заявок сотрудника: " + user.SecondName + " " + user.FirstName.ToUpper()[0] + ". " + user.ThirdName.ToUpper()[0] + ".";
             MainFrame.Navigate(new Frames.ScheduleView(userId));
@@ -63,8 +66,11 @@ namespace RequestsApp
             SearchText.Clear();
             MainFrame.Visibility = Visibility.Visible;
             SearchBox.Items.Clear();
-            SearchBox.Items.Add("Объекты");
-            SearchBox.Items.Add("Заголовок");
+            string[] arr = { "Объекты", "Заголовок" };
+            for (int i = 0; i < arr.Length; i++)
+            {
+                SearchBox.Items.Add(arr[i]);
+            }
             TableLabel.Content = "Список заключенных документов";
             MainFrame.Navigate(new Uri(@"Frames/DocumentsView.xaml", UriKind.Relative));
         }
@@ -74,11 +80,11 @@ namespace RequestsApp
             SearchText.Clear();
             MainFrame.Visibility = Visibility.Visible;
             SearchBox.Items.Clear();
-            SearchBox.Items.Add("Название");
-            SearchBox.Items.Add("Адрес");
-            SearchBox.Items.Add("ФИО директора");
-            SearchBox.Items.Add("ФИО агент");
-            SearchBox.Items.Add("Телефон");
+            string[] arr = { "Название", "Адрес", "ФИО директора", "ФИО агент", "Телефон" };
+            for (int i = 0; i < arr.Length; i++)
+            {
+                SearchBox.Items.Add(arr[i]);
+            }
             TableLabel.Content = "Список организации";
             MainFrame.Navigate(new Uri(@"Frames/FacilitiesView.xaml", UriKind.Relative));
         }
@@ -88,13 +94,11 @@ namespace RequestsApp
             SearchText.Clear();
             MainFrame.Visibility = Visibility.Visible;
             SearchBox.Items.Clear();
-            SearchBox.Items.Add("Фамилия");
-            SearchBox.Items.Add("Имя");
-            SearchBox.Items.Add("Отчество");
-            SearchBox.Items.Add("Телефон");
-            SearchBox.Items.Add("Email");
-            SearchBox.Items.Add("Пароль");
-            SearchBox.Items.Add("Должность");
+            string[] arr = { "Фамилия", "Имя", "Отчество", "Телефон", "Email", "Пароль", "Должность" };
+            for (int i = 0; i < arr.Length; i++)
+            {
+                SearchBox.Items.Add(arr[i]);
+            }
             TableLabel.Content = "Список сотрудников";
             MainFrame.Navigate(new Uri(@"Frames/EmployeesView.xaml", UriKind.Relative));
         }

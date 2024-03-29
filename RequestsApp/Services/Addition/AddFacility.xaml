@@ -44,7 +44,7 @@
                             <TextBox Name="address_tb" MaxLength="30" Width="300" Height="30" FontSize="18" Margin="0 4 0 4"/>
                             <TextBox Name="dir_tb" MaxLength="30" Width="300" Height="30" FontSize="18" Margin="0 4 0 4"/>
                             <TextBox Name="agent_tb" MaxLength="50" Width="300" Height="30" FontSize="18" Margin="0 4 0 4"/>
-                            <xctk:MaskedTextBox Mask="+375000000000" Name="phone_tb" MaxLength="13" Width="300" Height="30" FontSize="18" Margin="0 4 0 4"/>
+                            <xctk:MaskedTextBox Mask="+375(00)000-00-00" Name="phone_tb" MaxLength="13" Width="300" Height="30" FontSize="18" Margin="0 4 0 4"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>

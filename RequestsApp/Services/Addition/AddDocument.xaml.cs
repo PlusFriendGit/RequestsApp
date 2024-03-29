@@ -60,11 +60,14 @@ namespace RequestsApp.Services.Addition
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+
+            #region Field_Validation
             if (string.IsNullOrWhiteSpace(title_tb.Text) || string.IsNullOrWhiteSpace(desc_tb.Text))
             {
                 MessageBox.Show("Поля 'Название' и 'Описание' не могут быть пустыми.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            #endregion
 
             this.DialogResult = true;
 

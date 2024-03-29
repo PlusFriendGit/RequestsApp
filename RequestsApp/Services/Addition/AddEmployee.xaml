@@ -45,7 +45,7 @@
                             <TextBox Name="first_name" MaxLength="30" Width="300" Height="30" FontSize="18" Margin="0 4 0 4"/>
                             <TextBox Name="second_name" MaxLength="30" Width="300" Height="30" FontSize="18" Margin="0 4 0 4"/>
                             <TextBox Name="third_name" MaxLength="30" Width="300" Height="30" FontSize="18" Margin="0 4 0 4"/>
-                            <xctk:MaskedTextBox Mask="+375000000000" Name="phone_tb" MaxLength="13" Width="300" Height="30" FontSize="18" Margin="0 4 0 4"/>
+                            <xctk:MaskedTextBox Mask="+375(00)000-00-00" Name="phone_tb" MaxLength="13" Width="300" Height="30" FontSize="18" Margin="0 4 0 4"/>
                             <TextBox Name="email_tb" MaxLength="50" Width="300" Height="30" FontSize="18" Margin="0 4 0 4"/>
                             <TextBox Name="password_tb" MaxLength="30" Width="300" Height="30" FontSize="18" Margin="0 4 0 4"/>
                             <TextBox Name="position_tb" MaxLength="100" Width="300" Height="30" FontSize="18" Margin="0 4 0 4"/>

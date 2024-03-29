@@ -71,23 +71,29 @@ namespace RequestsApp.Services.Addition
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            // Проверка на пустоту полей и корректность данных
+            #region Field_Validation
+            // Проверка поля 'Проблема'
             if (string.IsNullOrWhiteSpace(issue_tb.Text))
             {
                 MessageBox.Show("Поле 'Проблема' не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+
+            // Проверка поля 'Объект'
             if (facility_cb.SelectedItem == null)
             {
                 MessageBox.Show("В поле 'Объект' не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+
+            // Проверка поля 'Сотрудник'
             if (employee_cb.SelectedItem == null)
             {
                 MessageBox.Show("В поле 'Сотрудник' не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
+            // Проверка выбранных дат
             if (open_date.SelectedDate == null || close_date.SelectedDate == null)
             {
                 MessageBox.Show("Выберите дату открытия и закрытия.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -97,23 +103,34 @@ namespace RequestsApp.Services.Addition
             DateTime openDate = open_date.SelectedDate.Value;
             DateTime closeDate = close_date.SelectedDate.Value;
 
+            // Проверка, что дата открытия не позднее текущей даты
+            if (openDate > DateTime.Today)
+            {
+                MessageBox.Show("Дата открытия не может быть позже текущей даты.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Проверка, что дата закрытия не раньше даты открытия
             if (openDate > closeDate)
             {
                 MessageBox.Show("Дата закрытия не может быть раньше даты открытия.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            if (!Regex.IsMatch(phone_tb.Text, @"^\+375\d{2}\d{3}\d{2}\d{2}$"))
+            // Проверка формата номера телефона
+            if (!Regex.IsMatch(phone_tb.Text.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", ""), @"^\+375\d{2}\d{3}\d{2}\d{2}$"))
             {
                 MessageBox.Show("Некорректный формат номера телефона.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
+            // Проверка поля 'Comment'
             if (string.IsNullOrWhiteSpace(comment_tb.Text))
             {
-                MessageBox.Show("Поле 'Comment' не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Поле 'Коментарии' не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            #endregion
 
             var sql_id = new SqlParameter("@ID", id);
             var facility = new SqlParameter("@F", (facility_cb.SelectedItem as FacilityTable).FacilityId);
@@ -121,7 +138,7 @@ namespace RequestsApp.Services.Addition
             var issue = new SqlParameter("@I", issue_tb.Text);
             var date1 = new SqlParameter("@OD", openDate.ToString());
             var date2 = new SqlParameter("@CD", closeDate.ToString());
-            var phone = new SqlParameter("@P", phone_tb.Text);
+            var phone = new SqlParameter("@P", phone_tb.Text.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", ""));
             var comment = new SqlParameter("@C", comment_tb.Text);
             var s = new SqlParameter("@S", status_cb.IsChecked);
 
@@ -136,7 +153,7 @@ namespace RequestsApp.Services.Addition
                     "WHERE Request_id = @ID", facility, employee, issue, date1, date2, phone, comment, s, sql_id);
             }
 
-            // Продолжение операции добавления/обновления записи в базе данных
+            
             this.DialogResult = true;
             db = new RequestsDbContext();
             Close();

@@ -62,31 +62,37 @@ namespace RequestsApp.Services.Addition
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            // Проверка на пустоту полей и корректность данных
+
+            #region Field_Validation
+            // Проверка поля 'Имя'
             if (string.IsNullOrWhiteSpace(first_name.Text))
             {
                 MessageBox.Show("Поле 'Имя' не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
+            // Проверка поля 'Фамилия'
             if (string.IsNullOrWhiteSpace(second_name.Text))
             {
                 MessageBox.Show("Поле 'Фамилия' не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
+            // Проверка поля 'Отчество'
             if (string.IsNullOrWhiteSpace(third_name.Text))
             {
                 MessageBox.Show("Поле 'Отчество' не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(phone_tb.Text))
+            // Проверка поля 'Телефон'
+            if (string.IsNullOrWhiteSpace(phone_tb.Text.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "")))
             {
                 MessageBox.Show("Поле 'Телефон' не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
+            // Проверка поля 'Email'
             if (string.IsNullOrWhiteSpace(email_tb.Text) ||
                 (!email_tb.Text.EndsWith("@mail.ru") && !email_tb.Text.EndsWith("@gmail.com")) ||
                 email_tb.Text.IndexOf("@") != email_tb.Text.LastIndexOf("@") ||
@@ -96,6 +102,7 @@ namespace RequestsApp.Services.Addition
                 return;
             }
 
+            // Проверка поля 'Пароль'
             if (string.IsNullOrWhiteSpace(password_tb.Text) ||
                 password_tb.Text.Length < 8 ||
                 password_tb.Text.Distinct().Count() != password_tb.Text.Length)
@@ -104,11 +111,13 @@ namespace RequestsApp.Services.Addition
                 return;
             }
 
+            // Проверка поля 'Должность'
             if (string.IsNullOrWhiteSpace(position_tb.Text))
             {
                 MessageBox.Show("Поле 'Должность' не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            #endregion
 
             // Продолжение операции добавления/обновления записи в базе данных
             var sql_id = new SqlParameter("@ID", id);
@@ -118,7 +127,7 @@ namespace RequestsApp.Services.Addition
             var p = new SqlParameter("@P", phone_tb.Text);
             var email = new SqlParameter("@E", email_tb.Text);
             var pass = new SqlParameter("@PASS", password_tb.Text);
-            var pos = new SqlParameter("@POS", position_tb.Text);
+            var pos = new SqlParameter("@POS", position_tb.Text.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", ""));
 
             if (!isUpdate)
             {
