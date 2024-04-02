@@ -17,9 +17,27 @@
         <DataGrid Name="dataGrid" FontSize="16"
                   AutoGenerateColumns="False" HeadersVisibility="Column" CanUserResizeColumns="False" CanUserAddRows="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Объект" Binding="{Binding Name}" Width="*" FontSize="14"/>
-                <DataGridTextColumn Header="Проблема" Binding="{Binding Issue}" Width="*" FontSize="14"/>
-                <DataGridTextColumn Header="Дата открытия" Binding="{Binding OpenDate, StringFormat=d, ConverterCulture=ru-Ru}" Width="*" FontSize="14"/>
+                <DataGridTextColumn Header="Объект" Binding="{Binding Name}" Width="*" FontSize="14">
+                <DataGridTextColumn.ElementStyle>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Background" Value="{Binding Status, Converter={StaticResource DateBackgroundConverter}}"/>
+                    </Style>
+                </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Проблема" Binding="{Binding Issue}" Width="*" FontSize="14">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Background" Value="{Binding Status, Converter={StaticResource DateBackgroundConverter}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Дата открытия" Binding="{Binding OpenDate, StringFormat=d, ConverterCulture=ru-Ru}" Width="*" FontSize="14">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Background" Value="{Binding Status, Converter={StaticResource DateBackgroundConverter}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="*" FontSize="14">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="{x:Type TextBlock}">
@@ -27,8 +45,20 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="*" FontSize="14"/>
-                <DataGridTextColumn Header="Примечание" Binding="{Binding Comment}" Width="*" FontSize="14"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="*" FontSize="14">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Background" Value="{Binding Status, Converter={StaticResource DateBackgroundConverter}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Примечание" Binding="{Binding Comment}" Width="*" FontSize="14">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Background" Value="{Binding Status, Converter={StaticResource DateBackgroundConverter}}"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

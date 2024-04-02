@@ -15,7 +15,9 @@
 
         <!-- Правая часть - Авторизация -->
         <StackPanel Grid.Column="1" Margin="20" Visibility="Visible" x:Name="RightPanel">
-            <Label HorizontalAlignment="Center" FontSize="18" VerticalAlignment="Center">Авторизация</Label>
+            <Label x:Name="NameWindow" HorizontalAlignment="Center" FontSize="18" VerticalAlignment="Center">Авторизация</Label>
+            <Label x:Name="NameLabel" HorizontalAlignment="Left" Margin="20 0 20 0" FontSize="12" VerticalAlignment="Center" Visibility="Collapsed">ФИО</Label>
+            <TextBox x:Name="NameTextBox" Margin="20 0 20 10" Visibility="Collapsed"></TextBox>
             <Label HorizontalAlignment="Left" Margin="20 0 20 0" FontSize="12" VerticalAlignment="Center">Email</Label>
             <TextBox x:Name="Login" Margin="20 0 20 10"></TextBox>
             <Label HorizontalAlignment="Left" FontSize="12" Margin="20 0 0 0" VerticalAlignment="Center">Пароль</Label>
@@ -25,6 +27,7 @@
         </StackPanel>
         <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Bottom" Margin="0 20 0 20">
             <Button x:Name="OpenDate" HorizontalAlignment="Right" Height="32" Margin="20 0 20 1" Width="120" Click="OpenDate_Click">Войти</Button>
+            <Button x:Name="OpenDateReg" HorizontalAlignment="Right" Height="32" Margin="20 0 20 1" Width="120" Visibility="Collapsed" Click="OpenDateReg_Click" >Регистрация</Button>
         </StackPanel>
     </Grid>
 </Window>

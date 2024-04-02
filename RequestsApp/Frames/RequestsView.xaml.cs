@@ -60,7 +60,6 @@ namespace RequestsApp.Frames
             {
                 var id = (dataGrid.SelectedItem as Models.RequestsView).RequestId;
                 db.Database.ExecuteSqlRaw($"DELETE FROM Requests_table WHERE Request_id = {id}");
-
                 db = new RequestsDbContext();
                 dataGrid.ItemsSource = db.RequestsViews.ToList();
             }

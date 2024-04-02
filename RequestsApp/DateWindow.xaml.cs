@@ -21,7 +21,7 @@ namespace RequestsApp
     public partial class DateWindow : Window
     {
         public int userId;
-
+        bool statusAdmin = false;
         RequestsDbContext db;
         public DateWindow(int userId)
         {
@@ -29,8 +29,8 @@ namespace RequestsApp
 
             db = new RequestsDbContext();
             this.userId = userId;
-            if (userId != 2)
-                EmployeesButton.Visibility = Visibility.Collapsed;
+            if (userId == 1)
+                statusAdmin = true;
             MainFrame.Navigate(new Uri(@"Frames/RequestsView.xaml", UriKind.Relative));
         }
 
@@ -85,7 +85,7 @@ namespace RequestsApp
             {
                 SearchBox.Items.Add(arr[i]);
             }
-            TableLabel.Content = "Список организации";
+            TableLabel.Content = "Список объектов";
             MainFrame.Navigate(new Uri(@"Frames/FacilitiesView.xaml", UriKind.Relative));
         }
 
@@ -373,6 +373,9 @@ namespace RequestsApp
 
                         row++;
                     }
+
+                    // Форматирование текста в ячейках
+                    worksheet.Columns().AdjustToContents(); // Автоматическое изменение ширины столбцов
 
                     // Сохранение файла отчета
                     var saveFileDialog = new Microsoft.Win32.SaveFileDialog();

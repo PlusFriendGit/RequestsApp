@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DocumentFormat.OpenXml.InkML;
+using Microsoft.EntityFrameworkCore;
 using RequestsApp.Models;
 using RequestsApp.Services.Addition;
 using System;
@@ -65,9 +66,8 @@ namespace RequestsApp.Frames
             {
                 var id = (dataGrid.SelectedItem as EmployeesTable).EmployeeId;
                 db.Database.ExecuteSqlRaw($"DELETE FROM Employees_table WHERE Employee_id = {id}");
-                dataGrid.ItemsSource = db.EmployeesTables.ToList();
                 db = new RequestsDbContext();
-                dataGrid.ItemsSource = db.RequestsViews.ToList();
+                dataGrid.ItemsSource = db.EmployeesTables.ToList();
             }
         }
 

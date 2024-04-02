@@ -59,9 +59,8 @@ namespace RequestsApp.Frames
             {
                 var id = (dataGrid.SelectedItem as FacilityTable).FacilityId;
                 db.Database.ExecuteSqlRaw($"DELETE FROM Facility_table WHERE Facility_id = {id}");
-                dataGrid.ItemsSource = db.FacilityTables.ToList();
                 db = new RequestsDbContext();
-                dataGrid.ItemsSource = db.RequestsViews.ToList();
+                dataGrid.ItemsSource = db.FacilityTables.ToList();
             }
         }
 

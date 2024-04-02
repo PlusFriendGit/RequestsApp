@@ -49,9 +49,8 @@ namespace RequestsApp.Frames
             {
                 var id = (dataGrid.SelectedItem as Models.DocumentsView).DocumentId;
                 db.Database.ExecuteSqlRaw($"DELETE FROM Documents_table WHERE Document_id = {id}");
-                dataGrid.ItemsSource = db.DocumentsViews.ToList();
                 db = new RequestsDbContext();
-                dataGrid.ItemsSource = db.RequestsViews.ToList();
+                dataGrid.ItemsSource = db.DocumentsViews.ToList();
             }
         }
 

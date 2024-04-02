@@ -56,10 +56,11 @@ namespace RequestsApp.Frames
             if (dataGrid.SelectedIndex >= 0 && MessageBox.Show("Вы действительно собираетесь закрыть заявку?", "Подтвердите действие", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 var id = (dataGrid.SelectedItem as Models.ScheduleView).RequestId;
-                db.Database.ExecuteSqlRaw($"DELETE FROM Requests_table WHERE Request_id = {id}");
-                dataGrid.ItemsSource = db.RequestsViews.ToList();
+                //db.Database.ExecuteSqlRaw($"DELETE FROM Requests_table WHERE Request_id = {id}");
+                db.Database.ExecuteSqlRaw($"EXEC CloseRequestProcedure @RequestID = {id}");
                 db = new RequestsDbContext();
                 dataGrid.ItemsSource = db.RequestsViews.ToList();
+
             }
         }
 
